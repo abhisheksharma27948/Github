@@ -1,3 +1,12 @@
+//set classpath=pdfbox-app-2.0.26.jar;.;
+import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 //package p1;
 import java.awt.*;
 import java.awt.event.*;
@@ -73,89 +82,195 @@ public class MyActionListener implements ActionListener
 			mf.setVisible(true);
 		}
 
-
 		if(e.getActionCommand().equals("Total_Bill"))
-		{ 			
-            Integer num1 = Integer.parseInt(this.mf1.t1.getText());
-			Integer num2 = Integer.parseInt(this.mf1.t2.getText());
-			Integer num3 = Integer.parseInt(this.mf1.t3.getText());
-			Integer sum = num1+num2+num3;
-			this.mf1.t4.setText(sum.toString());
-			System.out.println(sum);
-			try{
-				FileWriter fw = new FileWriter("bill.txt",true);
-				fw.write(sum.toString()+"#");
-				fw.close();
-			}
-			catch(Exception excp)
+		{ 	
+			try
 			{
-				System.out.println(excp);
+            	Integer num1 = Integer.parseInt(this.mf1.t1.getText());
+				Integer num2 = Integer.parseInt(this.mf1.t2.getText());
+				Integer num3 = Integer.parseInt(this.mf1.t3.getText());
+				Integer sum = num1+num2+num3;
+				this.mf1.t4.setText(sum.toString());
+				System.out.println(sum);
+				try{
+					FileWriter fw = new FileWriter("bill.txt",true);
+					fw.write(sum.toString()+"#");
+					fw.close();
+				}
+				catch(Exception excp)
+				{
+					System.out.println(excp);
+				}
+
+				PDDocument document = new PDDocument();
+
+				PDPage page = new PDPage();
+				document.addPage(page);
+
+				PDPageContentStream contentStream = new PDPageContentStream(document, page);
+				contentStream.beginText();
+
+				contentStream.setFont(PDType1Font.TIMES_BOLD, 18);
+
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText("My Bill");
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText(sum.toString()+"Ruppes");
+
+				contentStream.endText();
+
+				System.out.println("Content added");
+				contentStream.close();
+				document.save("Bill.pdf");
+				document.close();
 			}
+			catch(Exception e1){}
 
 		}
+
  			
 		if(e.getActionCommand().equals("Total_Grocery"))
-		//else if(e.getSource().equals(this.mf2.Total_Grocery))
+		//if(e.getSource().equals(this.mf2.Total_Grocery))
 		{ 			
-           	Integer num1 = Integer.parseInt(this.mf2.t1.getText());
-			Integer num2 = Integer.parseInt(this.mf2.t2.getText());
-			Integer num3 = Integer.parseInt(this.mf2.t3.getText());
-			Integer sum = num1+num2+num3;
-			this.mf2.t4.setText(sum.toString());
-			System.out.println(sum);
-
-			try{
-				FileWriter fw = new FileWriter("Grocery.txt",true);
-				fw.write(sum.toString()+"#");
-				fw.close();
-			}
-			catch(Exception excp)
+           	try
 			{
-				System.out.println(excp);
+
+				
+				Integer num1 = Integer.parseInt(this.mf2.t1.getText());
+				Integer num2 = Integer.parseInt(this.mf2.t2.getText());
+				Integer num3 = Integer.parseInt(this.mf2.t3.getText());
+				Integer sum = num1+num2+num3;
+				this.mf2.t4.setText(sum.toString());
+				System.out.println(sum);
+
+				try{
+					FileWriter fw = new FileWriter("Grocery.txt",true);
+					fw.write(sum.toString()+"#");
+					fw.close();
+				}
+				catch(Exception excp)
+				{
+					System.out.println(excp);
+				}
+				PDDocument document = new PDDocument();
+
+				PDPage page = new PDPage();
+				document.addPage(page);
+
+				PDPageContentStream contentStream = new PDPageContentStream(document, page);
+				contentStream.beginText();
+
+				contentStream.setFont(PDType1Font.TIMES_BOLD, 18);
+
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText("My Grocery");
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText(sum.toString());
+
+				contentStream.endText();
+
+				System.out.println("Content added");
+				contentStream.close();
+				document.save("Grocery.pdf");
+				document.close();
 			}
+			catch(Exception excp){}
 		}
 
 		if(e.getActionCommand().equals("Total_Fees"))
 		//if(e.getSource().equals(this.mf3.total))
 		{ 
-			//e.getSource().equals(this.mf3.total)
-            Integer num1 = Integer.parseInt(this.mf3.t1.getText());
-			Integer num2 = Integer.parseInt(this.mf3.t2.getText());
-			Integer num3 = Integer.parseInt(this.mf3.t3.getText());
-			Integer sum = num1+num2+num3;
-			this.mf3.t4.setText(sum.toString());
-			System.out.println(sum);
-			try{
-				FileWriter fw = new FileWriter("Fees.txt",true);
-				fw.write(sum.toString()+"#");
-				fw.close();
-			}
-			catch(Exception excp)
+			try
 			{
-				System.out.println(excp);
+
+
+	            Integer num1 = Integer.parseInt(this.mf3.t1.getText());
+				Integer num2 = Integer.parseInt(this.mf3.t2.getText());
+				Integer num3 = Integer.parseInt(this.mf3.t3.getText());
+				Integer sum = num1+num2+num3;
+				this.mf3.t4.setText(sum.toString());
+				System.out.println(sum);
+				try{
+					FileWriter fw = new FileWriter("Fees.txt",true);
+					fw.write(sum.toString()+"#");
+					fw.close();
+				}
+				catch(Exception excp)
+				{
+					System.out.println(excp);
+				}
+				PDDocument document = new PDDocument();
+
+				PDPage page = new PDPage();
+				document.addPage(page);
+
+				PDPageContentStream contentStream = new PDPageContentStream(document, page);
+				contentStream.beginText();
+
+				contentStream.setFont(PDType1Font.TIMES_BOLD, 18);
+
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText("My Fees");
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText(sum.toString());
+
+				contentStream.endText();
+
+				System.out.println("Content added");
+				contentStream.close();
+				document.save("Fees.pdf");
+				document.close();
 			}
+			catch(Exception excp){}
 		}
 		
 		//if(e.getSource().equals(this.mf4.Total_Functions))
 		if(e.getActionCommand().equals("Total_"))
 		{ 
-            Integer num1 = Integer.parseInt(this.mf4.t1.getText());
-			Integer num2 = Integer.parseInt(this.mf4.t2.getText());
-			Integer num3 = Integer.parseInt(this.mf4.t3.getText());
-			Integer num4 = Integer.parseInt(this.mf4.t4.getText());
-			Integer sum = num1+num2+num3+num4;
-			this.mf4.t5.setText(sum.toString());
-			System.out.println(sum);
+	        try
+	        {
 
-			try{
-				FileWriter fw = new FileWriter("Function.txt",true);
-				fw.write(sum.toString()+"#");
-				fw.close();
+
+	            Integer num1 = Integer.parseInt(this.mf4.t1.getText());
+				Integer num2 = Integer.parseInt(this.mf4.t2.getText());
+				Integer num3 = Integer.parseInt(this.mf4.t3.getText());
+				Integer num4 = Integer.parseInt(this.mf4.t4.getText());
+				Integer sum = num1+num2+num3+num4;
+				this.mf4.t5.setText(sum.toString());
+				System.out.println(sum);
+
+				try{
+					FileWriter fw = new FileWriter("Function.txt",true);
+					fw.write(sum.toString()+"#");
+					fw.close();
+				}
+				catch(Exception excp)
+				{
+					System.out.println(excp);
+				}
+				PDDocument document = new PDDocument();
+
+				PDPage page = new PDPage();
+				document.addPage(page);
+
+				PDPageContentStream contentStream = new PDPageContentStream(document, page);
+				contentStream.beginText();
+
+				contentStream.setFont(PDType1Font.TIMES_BOLD, 18);
+
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText("My Function");
+				contentStream.newLineAtOffset(0, 20);
+				contentStream.showText(sum.toString());
+
+				contentStream.endText();
+
+				System.out.println("Content added");
+				contentStream.close();
+				document.save("Function.pdf");
+				document.close();
 			}
-			catch(Exception excp)
-			{
-				System.out.println(excp);
-			}
+			catch(Exception excp){}
 		}
 			
 		if(e.getActionCommand().equals("Bill"))

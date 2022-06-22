@@ -26,7 +26,7 @@ public class Grocery extends JFrame
 		t3=new JTextField();
 		t4=new JTextField();
 
-		img = new ImageIcon("d.JPG");
+		img = new ImageIcon("Grocery_.JPG");
 		IMAGe = new JLabel(img);
 		IMAGe.setBounds(0,0,img.getIconWidth(),img.getIconHeight());
 		IMAGe.setVisible(true);

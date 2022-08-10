@@ -54,7 +54,7 @@ public class Fees extends JFrame
 		add(Tuition_Fees);
 		add(total_Fees);
 		add(Back_);
-		add(IMAGe);
+		//add(IMAGe);
 		
 		t1.setBounds(350,100,150,50);
 		t2.setBounds(350,200,150,50);
